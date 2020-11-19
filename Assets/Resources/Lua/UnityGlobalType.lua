@@ -22,4 +22,4 @@ RectTransform 	= UnityEngine.RectTransform
 UnityTime 		= UnityEngine.Time
 Shader 			= UnityEngine.Shader
 --GridLayoutGroup = UnityEngine.UI.GridLayoutGroup
-Debug           = UnityEngine.Debug
+Debug           = GameLog

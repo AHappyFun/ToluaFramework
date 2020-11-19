@@ -26,6 +26,6 @@ function GameMain.FixedTick(delta)
     
 end
 
-function GameMain.OnDestroy()
-
+function GameMain.Destroy()
+    LuaLog("############# Lua GameMain Destroy #############");
 end

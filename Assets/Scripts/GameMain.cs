@@ -4,6 +4,7 @@ using LuaInterface;
 
 public class GameMain : MonoBehaviour {
 
+    //--------------
     void Awake()
     {
         Init();
@@ -14,23 +15,56 @@ public class GameMain : MonoBehaviour {
 
     }
 
+    private void OnDestroy()
+    {
+        //Clear All Assetbundles
+        Caching.CleanCache();
+    }
+
+    private void OnApplicationQuit()
+    {
+        if(gameObject!=null)
+            CallLuaFunc("GameMain.Destroy", gameObject);
+    }
+
 
     //-------------------
     LuaState lua = null;
     LuaFunction luaFunc = null;
 
     void Init()
-    {
-        //init SDK
-
+    { 
         InitGame();
 
+        InitSDK();
+
+        InitLogger();
+
+        //游戏更新
+        GameUpdate();
+
         InitLua();
+
     }
 
     void InitGame()
     {
         DontDestroyOnLoad(gameObject);
+    }
+
+    void InitSDK()
+    {
+
+    }
+
+    void InitLogger()
+    {
+        FileLogger.Init();
+    }
+
+    void GameUpdate()
+    {
+
     }
 
     void InitLua()
@@ -46,7 +80,6 @@ public class GameMain : MonoBehaviour {
 
         lua.DoFile("UnityGlobalType.lua");
         lua.DoFile("FrameWork/LuaDebugger.lua");
-
         lua.DoFile("GameMain.lua");
 
         CallLuaFunc("GameMain.Init", gameObject);
