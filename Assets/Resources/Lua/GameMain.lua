@@ -1,5 +1,6 @@
 --require ...
 require "FrameWork.LuaDebugger";
+require "Utils.TableUtils";
 
 require "UI.UIManager";
 

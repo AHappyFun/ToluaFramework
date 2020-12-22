@@ -39,7 +39,7 @@ function M:LoadRes(path, loadedCallback)
         return;
     end
 
-
+    AssetLoader.Load(path, loadedCallback);
 
 end
 

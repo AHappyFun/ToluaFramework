@@ -153,6 +153,7 @@ public static class CustomSettings
         _GT(typeof(LuaProfiler)),
 
         _GT(typeof(GameLog)),
+        _GT(typeof(AssetLoader)),
     };
 
     public static List<Type> dynamicList = new List<Type>()

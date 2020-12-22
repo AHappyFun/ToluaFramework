@@ -1,3 +1,6 @@
+--[[
+    UIManager 统一管理UI
+-]]
 local Singleton = require "FrameWork.Singleton";
 
 UIManager = Class("UIManager", Singleton);
@@ -15,7 +18,9 @@ function M:Init()
     LuaLog("UIManager Init");
 end
 
-function M:Open(m, args)
+function M:OpenDialog(dialogType, args)
+    local dialog = UIPoolManager:GetInstance():GetDialogInPool()
+
     local ret = self:_Open(m, args);
     return ret;
 end
