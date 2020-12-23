@@ -38,17 +38,20 @@ function M:LoadRes(path, loadedCallback)
         LuaLog(self.__cname.."LoadRes path is nil.")
         return;
     end
+    self.loadOKCallback = loadedCallback;
+    --local action = System.Action
 
-    AssetLoader.Load(path, loadedCallback);
+    --LuaLog(path)
+    AssetLoader.Instance:Load(path, self.LoadResOK);
 
 end
 
 --加载完成回调
-function M:LoadResOK(path, prefab)
-    self.selfTransform = prefab.transform;
-    self.isLoading = false;
-    self.loaded = true;
-end
+--function M:LoadResOK(prefab)
+--    --self.selfTransform = prefab.transform;
+--    self.isLoading = false;
+--    self.loaded = true;
+--end
 
 --加载失败回调
 function M:LoadResError()

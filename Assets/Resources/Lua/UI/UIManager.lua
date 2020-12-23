@@ -1,6 +1,9 @@
 --[[
     UIManager 统一管理UI
 -]]
+require "UI.UIConfigManager";
+require "UI.UIPoolManager";
+
 local Singleton = require "FrameWork.Singleton";
 
 UIManager = Class("UIManager", Singleton);
@@ -16,10 +19,18 @@ end
 
 function M:Init()
     LuaLog("UIManager Init");
+    UIPoolManager:GetInstance():Init();
 end
 
-function M:OpenDialog(dialogType, args)
-    local dialog = UIPoolManager:GetInstance():GetDialogInPool()
+function M:Destroy()
+    LuaLog("UIManager Destroy");
+    UIPoolManager:GetInstance():Destroy();
+end
+
+function M:OpenDialog(m, args)
+    if not m then
+        return;
+    end
 
     local ret = self:_Open(m, args);
     return ret;

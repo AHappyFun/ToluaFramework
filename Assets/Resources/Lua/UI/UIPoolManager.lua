@@ -8,21 +8,27 @@ local M = UIPoolManager;
 
 function M:Ctor()
     Singleton.Ctor(self);
+end
 
-    self.uiPool = {};  --先一个池子
+function M:Init()
+    self.uiPool = {};  --先一个Dialog池子
+end
+
+function M:Destroy()
+    self.uiPool = nil;
 end
 
 function M:Tick(delta)
-    for k, v in pairs(self.uiPool) do
-
-    end
+    --for k, v in pairs(self.uiPool) do
+--
+    --end
 end
 
 function M:PushPool(uiComponent)
     if TableUtil.Contains(self.uiPool, uiComponent) then
         return;
     else
-        self.uiPool[uiComponent.name] = uiComponent;
+        self.uiPool[uiComponent._name] = uiComponent;
     end
 end
 

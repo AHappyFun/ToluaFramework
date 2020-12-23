@@ -2877,7 +2877,7 @@ namespace LuaInterface
 
             if (c != count)
             {
-                throw new LuaException(string.Format("no overload for method takes '{0}' arguments", c));
+                throw new LuaException(string.Format("no overload for method takes '{0}' arguments, should be '{1}' arguments ", c, count));
             }
         }  
 

@@ -59,14 +59,117 @@ function M:Parse(args)
 
 end
 
-function M:LoadResOK(path, prefab)
+function M:LoadResOK(prefab)
+    if prefab == nil then
+        if error then error("加载UIPrefab失败") end
+    end
+    self.selfTransform = prefab.transform;
+    self:OnPrepare(prefab.transform);
+    self.isLoading = false;
+    self.loaded = true;
+end
 
+---------------继承方法------------------------
+
+function M:BindUIComponent()
+end
+
+function M:MoveLayer()
+    --设置self.root的父级
 end
 
 function M:OnPrepare(trans)
+    self:GenChildPathMap(trans);
+    self:BindUIComponent();
+    self:MoveLayer();
+
+    self:TryOnCreate();
+    self:TryAddListener();
 
 end
 
+function M:Show(args)
+    self:SetVisible(true)
+
+    self:TryRefresh();
+end
+
+function M:Hide()
+    self:SetVisible(false);
+end
+
+function M:SetVisible(show)
+    if self.isVisible == show then
+        return;
+    end
+    
+    self.isVisible = show;
+    self:RefreshVisible();
+end
+
+function M:RefreshVisible()
+    if not self.root then return end
+    self.root.gameObject:SetActive(self.isVisible);
+
+    if (self.isVisible) then
+    else
+        
+    end
+end
+
+-----------周期方法-------------
+function M:OnCreate()
+end
+
+function M:AddListener()
+end
+
+function M:RemoveListener()
+end
+
+function M:OnShow()
+end
+
+function M:OnHide()
+    self:Hide();
+end
+
+function M:OnRefresh()
+end
+
+function M:OnClose()
+    self:Hide();
+end
+
+function M:TryErrorTrace(err)
+    if error then
+        error("handle a error :"..err)
+    end
+end
+
+function M:TryOnCreate()
+    xpcall(self.OnCreate, self.TryErrorTrace, self);
+end
+function M:TryAddListener()
+    xpcall(self.AddListener, self.TryErrorTrace, self);
+end
+function M:TryRemoveListener()
+    xpcall(self.RemoveListener, self.TryErrorTrace, self);
+end
+function M:TryOnShow()
+    xpcall(self.OnShow, self.TryErrorTrace, self);
+end
+function M:TryOnHide()
+    xpcall(self.OnHide, self.TryErrorTrace, self);
+end
+function M:TryRefresh()
+    xpcall(self.OnRefresh, self.TryErrorTrace, self);
+end
+function M:TryOnClose()
+    xpcall(self.OnClose, self.TryErrorTrace, self);
+end
+
+---------------------------------
 
 
 return M;

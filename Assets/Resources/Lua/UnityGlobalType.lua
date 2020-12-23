@@ -16,7 +16,6 @@ Input			= UnityEngine.Input
 RenderSettings  = UnityEngine.RenderSettings
 MeshRenderer	= UnityEngine.MeshRenderer
 Animator 		= UnityEngine.Animator
---UIText 			= UnityEngine.UI.Text
 NavMeshAgent 	= UnityEngine.NavMeshAgent
 RectTransform 	= UnityEngine.RectTransform
 UnityTime 		= UnityEngine.Time

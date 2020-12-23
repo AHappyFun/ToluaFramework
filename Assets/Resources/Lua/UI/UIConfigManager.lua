@@ -11,5 +11,11 @@ DialogType = {
     MainSceneDialog = "UI.GameLogic.MainSceneDialog",
 }
 
+DialogLayer = {
+    UIRootLayer = "UIRootLayer",
+    UIPanelLayer = "UIPanelLayer",
+    UIHudLayer = "UIHudLayer",
+    UITipsLayer = "UITipsLayer",
+}
 
 return M;
